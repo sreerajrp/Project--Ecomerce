@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+{% extends 'index.html' %}
+{% block content %}
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<div class="card">
+                <div class="card-body">
+                  <h4 class="card-title">Categorys</h4>
+<!--                  <p class="card-description">-->
+<!--                    Basic form elements-->
+<!--                  </p>-->
+                  <form class="forms-sample" method="post" action="{% url 'save_category' %}" enctype="multipart/form-data">
+                      {% csrf_token %}
+                    <div class="form-group">
+                      <label for="exampleInputName1">Category Name</label>
+                      <input type="text" class="form-control"  placeholder="Category Name"  name="name">
+                    </div>
+                    <div class="form-group">
+                      <label for="exampleTextarea1">Category Description</label>
+                      <textarea class="form-control"  rows="4" placeholder="Category Description" name="description"></textarea>
+                    </div>
+                     <div class="form-group">
+                      <label for="exampleInputName1">Category Image</label>
+                      <input type="File" class="form-control"  placeholder="Category image" name="image">
+                    </div>
+
+
+<!--                    <div class="form-group">-->
+<!--                      <label for="exampleSelectGender">Gender</label>-->
+<!--                        <select class="form-control" id="exampleSelectGender">-->
+<!--                          <option>Male</option>-->
+<!--                          <option>Female</option>-->
+<!--                        </select>-->
+<!--                      </div>-->
+
+                    <button type="submit" class="btn btn-primary mr-2">Submit</button>
+                    <button class="btn btn-light">Cancel</button>
+                  </form>
+                </div>
+              </div>
+
+</body>
+<!--Sweet alert codes-->
+<script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+{% if messages %}
+    {% for i in messages %}
+        {% if i.tags == 'success' %}
+            <script>
+                swal('{{ i }}', '', 'success');
+            </script>
+        {% elif i.tags == 'error' %}
+            <script>
+                swal('{{ i }}', '', 'error');
+            </script>
+        {% elif i.tags == 'warning' %}
+            <script>
+                swal('{{ i }}', '', 'warning');
+            </script>
+        {% else %}
+            <script>
+                swal('{{ i }}', '', 'info');
+            </script>
+        {% endif %}
+    {% endfor %}
+{% endif %}
+
+
+</html>
+{% endblock %}

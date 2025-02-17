@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+{% extends 'index.html' %}
+{% block content %}
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<div class="card">
+                <div class="card-body">
+                  <h4 class="card-title">Categorys</h4>
+<!--                  <p class="card-description">-->
+<!--                    Basic form elements-->
+<!--                  </p>-->
+                  <form class="forms-sample" method="post" action="{% url 'update_service' s_id=data.id %}" enctype="multipart/form-data">
+                      {% csrf_token %}
+
+                     <div class="form-group">
+                      <label for="exampleInputName1">Service Name</label>
+                      <input type="text" class="form-control"  placeholder="Product Name"  name="service_name" value="{{data.Service_Name}}">
+                    </div>
+                      <div class="form-group">
+                      <label for="exampleTextarea1">Description</label>
+                      <textarea class="form-control"  rows="4" placeholder="Service Description" name="description">{{data.Description}}</textarea>
+                    </div>
+
+                    <button type="submit" class="btn btn-primary mr-2">Submit</button>
+                    <button class="btn btn-light">Cancel</button>
+                  </form>
+                </div>
+              </div>
+
+</body>
+</html>
+{% endblock %}
